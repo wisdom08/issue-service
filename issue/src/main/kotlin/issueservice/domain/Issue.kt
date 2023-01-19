@@ -4,13 +4,16 @@ import jakarta.persistence.*
 
 @Entity
 @Table
-class Issue (
+class Issue(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @Column
     var userId: Long,
+
+    @OneToMany(fetch = FetchType.EAGER)
+    val comments: MutableList<Comment> = mutableListOf(),
 
     @Column
     var summary: String,
